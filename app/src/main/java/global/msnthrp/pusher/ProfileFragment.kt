@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.firebase.messaging.FirebaseMessaging
+import androidx.lifecycle.lifecycleScope
 import global.msnthrp.pusher.databinding.FragmentProfileBinding
+import global.msnthrp.pusher.domain.interactor.profile.ProfileInteractor
+import org.koin.android.ext.android.inject
 
 class ProfileFragment : Fragment() {
+
+    private val profileInteractor by inject<ProfileInteractor>()
 
     private lateinit var binding: FragmentProfileBinding
 
@@ -23,11 +27,9 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val token = task.result
-                binding.tv.text = binding.tv.text.toString() + "\n$token"
-            }
+        lifecycleScope.launchWhenResumed {
+            val user = profileInteractor.getCurrentUser()
+            binding.tv.text = binding.tv.text.toString() + "\n$user"
         }
     }
 }

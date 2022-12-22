@@ -1,4 +1,4 @@
-package global.msnthrp.pusher
+package global.msnthrp.pusher.data.firebase
 
 import com.google.firebase.messaging.FirebaseMessagingService
 

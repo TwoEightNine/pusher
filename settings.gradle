@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "pusher"
 include ':app'
+include ':domain'
+include ':data'
+include ':data:firebase'
