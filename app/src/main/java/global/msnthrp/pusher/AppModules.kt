@@ -9,13 +9,14 @@ val appModule = module {
     viewModel {
         ChatListViewModel(
             chatListInteractor = get(),
-            codeInteractor = get()
+            codeInteractor = get(),
+            senderInteractor = get()
         )
     }
     viewModel {
         ProfileViewModel(
             profileInteractor = get(),
-            codeInteractor = get()
+            codeInteractor = get(),
         )
     }
 }

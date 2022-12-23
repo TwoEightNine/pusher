@@ -5,13 +5,14 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import global.msnthrp.pusher.domain.interactor.code.CodeInteractor
+import global.msnthrp.pusher.domain.interactor.messaging.SenderInteractor
 import global.msnthrp.pusher.domain.interactor.profile.ProfileInteractor
 import global.msnthrp.pusher.ui.BaseViewModel
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val profileInteractor: ProfileInteractor,
-    private val codeInteractor: CodeInteractor
+    private val codeInteractor: CodeInteractor,
 ) : BaseViewModel<ProfileState, ProfileEvent>() {
 
     override fun getInitialViewState() = ProfileState()
