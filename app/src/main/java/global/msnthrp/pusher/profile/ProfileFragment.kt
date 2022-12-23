@@ -9,7 +9,7 @@ import global.msnthrp.pusher.ui.MvvmFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ProfileFragment : MvvmFragment<ProfileState, Unit, ProfileViewModel, FragmentProfileBinding>() {
+class ProfileFragment : MvvmFragment<ProfileState, ProfileEvent, ProfileViewModel, FragmentProfileBinding>() {
 
     override val viewModel: ProfileViewModel by viewModel()
 
@@ -21,9 +21,18 @@ class ProfileFragment : MvvmFragment<ProfileState, Unit, ProfileViewModel, Fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadProfile()
+        viewModel.loadProfileCode()
     }
 
     override fun renderState(state: ProfileState) {
         binding.tv.text = binding.tv.text.toString() + "\n${state.user}"
+    }
+
+    override fun handleEvent(command: ProfileEvent) {
+        when (command) {
+            is CodeBitmapReady -> {
+                binding.iv.setImageBitmap(command.bitmap)
+            }
+        }
     }
 }

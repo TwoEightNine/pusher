@@ -4,19 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.journeyapps.barcodescanner.ScanContract
-import com.journeyapps.barcodescanner.ScanIntentResult
-import com.journeyapps.barcodescanner.ScanOptions
+import androidx.navigation.fragment.findNavController
+import global.msnthrp.pusher.R
 import global.msnthrp.pusher.databinding.FragmentChatListBinding
 import global.msnthrp.pusher.ui.MvvmFragment
+import global.msnthrp.pusher.ui.getNavigationResult
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, FragmentChatListBinding>() {
 
     override val viewModel by viewModel<ChatListViewModel>()
-
-    private val barcodeLauncher = registerForActivityResult(ScanContract(), ::onScanResult)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -26,12 +23,13 @@ class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, Fr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.fabScan.setOnClickListener {
-            val scanOptions = ScanOptions()
-                .setBeepEnabled(false)
-                .setDesiredBarcodeFormats(ScanOptions.QR_CODE)
-                .setOrientationLocked(true)
-            barcodeLauncher.launch(scanOptions)
+            findNavController().navigate(R.id.action_chatListFragment_to_scannerFragment)
         }
+        binding.fabScan.setOnLongClickListener {
+            findNavController().navigate(R.id.action_chatListFragment_to_profileFragment)
+            true
+        }
+        getNavigationResult<String>()?.observe(viewLifecycleOwner, viewModel::addUser)
     }
 
     override fun onResume() {
@@ -41,11 +39,5 @@ class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, Fr
 
     override fun renderState(state: ChatListState) {
         binding.tv.text = state.chats.joinToString(separator = "\n")
-    }
-
-    private fun onScanResult(result: ScanIntentResult) {
-        if (result.contents != null) {
-            viewModel.addUser()
-        }
     }
 }

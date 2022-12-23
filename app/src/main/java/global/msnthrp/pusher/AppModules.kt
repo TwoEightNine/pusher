@@ -1,13 +1,21 @@
 package global.msnthrp.pusher
 
 import global.msnthrp.pusher.chatlist.ChatListViewModel
+import global.msnthrp.pusher.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
     viewModel {
         ChatListViewModel(
-            chatListInteractor = get()
+            chatListInteractor = get(),
+            codeInteractor = get()
+        )
+    }
+    viewModel {
+        ProfileViewModel(
+            profileInteractor = get(),
+            codeInteractor = get()
         )
     }
 }

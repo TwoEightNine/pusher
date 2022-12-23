@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
@@ -24,5 +25,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         val binding = getViewBinding(inflater, container)
         this.binding = binding
         return binding.root
+    }
+
+    protected fun onBackPressed() {
+        findNavController().navigateUp()
     }
 }
