@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import global.msnthrp.pusher.R
 import global.msnthrp.pusher.databinding.FragmentChatListBinding
 import global.msnthrp.pusher.ui.MvvmFragment
@@ -12,6 +13,8 @@ import global.msnthrp.pusher.ui.getNavigationResult
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, FragmentChatListBinding>() {
+
+    private val adapter = ChatListAdapter()
 
     override val viewModel by viewModel<ChatListViewModel>()
 
@@ -22,6 +25,9 @@ class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, Fr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.chatListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.chatListRecyclerView.adapter = adapter
+
         binding.fabScan.setOnClickListener {
             findNavController().navigate(R.id.action_chatListFragment_to_scannerFragment)
         }
@@ -38,6 +44,6 @@ class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, Fr
     }
 
     override fun renderState(state: ChatListState) {
-        binding.tv.text = state.chats.joinToString(separator = "\n")
+        adapter.update(state.chats)
     }
 }

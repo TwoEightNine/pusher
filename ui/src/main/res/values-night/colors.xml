@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background">@color/palette_dark_gray</color>
+    <color name="surface">@color/palette_dark_gray</color>
+    <color name="primary">@color/palette_green</color>
+    <color name="primary_dark">@color/palette_green_light</color>
+    <color name="accent">@color/palette_green</color>
+
+    <color name="text_major">@color/palette_white</color>
+    <color name="text_minor">@color/palette_dirty_white</color>
+    <color name="text_other">@color/palette_light_gray</color>
+    <color name="divider">@color/palette_gray</color>
+</resources>
