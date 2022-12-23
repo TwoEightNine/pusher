@@ -1,6 +1,7 @@
 package global.msnthrp.pusher.domain.interactor.profile
 
 import global.msnthrp.pusher.domain.entity.User
+import global.msnthrp.pusher.domain.interactor.messaging.MessagingDataSource
 
 class ProfileInteractor(
     private val messagingDataSource: MessagingDataSource,

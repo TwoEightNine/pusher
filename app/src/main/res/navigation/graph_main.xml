@@ -2,11 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/graph_main"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/chatListFragment">
 
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="global.msnthrp.pusher.ProfileFragment"
+        android:name="global.msnthrp.pusher.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="global.msnthrp.pusher.chatlist.ChatListFragment"
+        android:label="ChatListFragment" >
+        <action
+            android:id="@+id/action_chatListFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

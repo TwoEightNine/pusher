@@ -16,7 +16,8 @@ class PusherApplication : Application() {
             androidContext(applicationContext)
             modules(listOf(
                 domainModules,
-                dataModules
+                dataModules,
+                appModule
             ))
         }
     }

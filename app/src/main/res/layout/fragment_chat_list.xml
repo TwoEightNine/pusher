@@ -7,8 +7,11 @@
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! I DO NOT WANT TO DIE! " />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_scan"
