@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import global.msnthrp.pusher.R
 import global.msnthrp.pusher.databinding.FragmentChatListBinding
 import global.msnthrp.pusher.ui.MvvmFragment
+import global.msnthrp.pusher.ui.applyBottomInsetMargin
+import global.msnthrp.pusher.ui.applyTopInsetMargin
 import global.msnthrp.pusher.ui.getNavigationResult
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, FragmentChatListBinding>() {
+class ChatListFragment :
+    MvvmFragment<ChatListState, Unit, ChatListViewModel, FragmentChatListBinding>() {
 
     private val adapter = ChatListAdapter()
 
@@ -35,6 +38,8 @@ class ChatListFragment : MvvmFragment<ChatListState, Unit, ChatListViewModel, Fr
             findNavController().navigate(R.id.action_chatListFragment_to_profileFragment)
             true
         }
+        binding.fabScan.applyBottomInsetMargin()
+        binding.toolbar.applyTopInsetMargin()
         getNavigationResult<String>()?.observe(viewLifecycleOwner, viewModel::addUser)
     }
 

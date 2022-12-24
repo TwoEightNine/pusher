@@ -12,7 +12,20 @@ import org.koin.dsl.module
 val dataModules = module {
     loadKoinModules(firebaseModule)
 
-    single<ProfileDataSource> { SomeProfileDataSource() }
-    single<ChatDataSource> { SomeChatDataSource() }
+    single {
+        PusherDatabase.getDatabase(
+            applicationContext = get()
+        )
+    }
+    single<ProfileDataSource> {
+        SomeProfileDataSource(
+            applicationContext = get()
+        )
+    }
+    single<ChatDataSource> {
+        SomeChatDataSource(
+            pusherDatabase = get()
+        )
+    }
     single<SenderDataSource> { SomeSenderDataSource() }
 }

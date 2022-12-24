@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 Properties properties = new Properties()
@@ -51,4 +52,11 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation 'com.google.code.gson:gson:2.10'
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

@@ -21,8 +21,9 @@ class SenderInteractor(
 
     suspend fun sendHello(user: User) {
         usersAwaitingHelloFrom.add(user)
-        val currentUser = profileDataSource.getCurrentUser()
-        senderDataSource.sendMessage(user, RemoteMessage.HelloMessage(currentUser))
+        profileDataSource.getCurrentUser()?.also { currentUser ->
+            senderDataSource.sendMessage(user, RemoteMessage.HelloMessage(currentUser))
+        }
     }
 
     private suspend fun onRemoteMessageReceived(remoteMessage: RemoteMessage) {

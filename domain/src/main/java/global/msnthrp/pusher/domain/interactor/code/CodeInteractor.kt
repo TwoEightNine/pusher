@@ -11,7 +11,7 @@ class CodeInteractor {
             .associateWith { key -> uri.getQueryParameter(key) }
         val user = parameters[KEY_NAME]?.let { name ->
             parameters[KEY_TOKEN]?.let { token ->
-                User(name, token)
+                User(name, token, null)
             }
         }
         return user
